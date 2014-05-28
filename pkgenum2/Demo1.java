@@ -1,4 +1,4 @@
-package pkgenum;
+package pkgenum2;
 
 import org.junit.Test;
 
@@ -34,15 +34,44 @@ public class Demo1 {
 	public static void print(Grade g){//A B C D E
 		System.out.println(g);
 		System.out.println(g.getValue());
+		System.out.println(g.localValue());
 	}
 }
 
-//enum Grade{
-//		A,B,C,D,E;
-//}
-//如何定义枚举的构造函数,方法和字段 去封装更多的信息
-enum Grade{//class A100-90   B89-80  C79-70  D69-60  E59-0
-	A("100-90"),B("89-80"),C("79-70"),D("69-60"),E("59-0");//相当于建乐5个对象
+//带抽象方法的枚举
+
+enum Grade{//class A100-90优   B89-80良  C79-70中  D69-60差  E59-0不及格
+	A("100-90") {
+		@Override
+		public String localValue() {
+			// TODO Auto-generated method stub
+			return "优";
+		}
+	},B("89-80") {
+		@Override
+		public String localValue() {
+			// TODO Auto-generated method stub
+			return "良";
+		}
+	},C("79-70") {
+		@Override
+		public String localValue() {
+			// TODO Auto-generated method stub
+			return "中";
+		}
+	},D("69-60") {
+		@Override
+		public String localValue() {
+			// TODO Auto-generated method stub
+			return "差";
+		}
+	},E("59-0") {
+		@Override
+		public String localValue() {
+			// TODO Auto-generated method stub
+			return "不及格";
+		}
+	};//相当于建乐5个对象
 	private String value;
 	private Grade(String value){
 		this.value = value;
@@ -53,4 +82,6 @@ enum Grade{//class A100-90   B89-80  C79-70  D69-60  E59-0
 	public String getValue(){
 		return this.value;
 	}
+	
+	public abstract String localValue();
 }
